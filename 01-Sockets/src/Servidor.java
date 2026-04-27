@@ -15,7 +15,7 @@ public class Servidor {
     public void connecta(){
         try {
             srvSocket = new ServerSocket(PORT);
-            System.out.println("Servidor en marxa a " + HOST + ":"  + PORT);
+            System.out.println("Servidor en marxa a " + HOST + ":" + PORT);
             System.out.println("Esperant connexions a " + HOST + ":" + PORT);
 
             clientSocket = srvSocket.accept();                
@@ -34,9 +34,12 @@ public class Servidor {
 
             while ((line = br.readLine()) != null) {
                 System.out.println("Rebut: " + line);
-            } 
-            
-            br.close();
+                if (line.equals("Adéu!")) {
+                    break; // Rompe el bucle de lectura inmediatamente
+                }
+            }            
+            br.close();            
+
         } catch (IOException ex) {
         }    
     }
